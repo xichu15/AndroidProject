@@ -13,5 +13,14 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:text="Tu będą wyświetlane zadania od current date do ..." />
+
+    <Button
+        android:text="Ustawienia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="158dp"
+        android:id="@+id/settingsBtn" />
 </RelativeLayout>
