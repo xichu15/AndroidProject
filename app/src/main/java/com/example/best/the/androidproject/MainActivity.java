@@ -8,13 +8,14 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 //SNIKI COMMIT
+    Button baton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         //TU BYLAM ~Dudzilla
-        Button  baton = (Button) findViewById(R.id.settingsBtn);
+        baton = (Button) findViewById(R.id.settingsBtn);
 
         baton.setOnClickListener(new View.OnClickListener(){
             @Override
