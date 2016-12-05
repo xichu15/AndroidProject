@@ -8,28 +8,47 @@ import java.util.Calendar;
 
 public class TestTask {
 
-    private String name;
-    private Calendar startDate;
+    private String taskName;
+    private Calendar taskStartDate;
+    private String taskDescription;
 
-    public TestTask(String name, Calendar startDate){
-        this.name = name;
-        this.startDate = startDate;
+    public TestTask(String name, Calendar taskStartDate, String taskDescription){
+        this.taskName = name;
+        this.taskStartDate = taskStartDate;
+        this.taskDescription = taskDescription;
     }
 
 
-    public String getName() {
-        return name;
+    public String getTaskName() {
+        return taskName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTaskName(String taskName) {
+        this.taskName = taskName;
     }
 
-    public Calendar getStartDate() {
-        return startDate;
+    public Calendar getTaskStartDate() {
+        return taskStartDate;
     }
 
-    public void setStartDate(Calendar startDate) {
-        this.startDate = startDate;
+    public void setTaskStartDate(Calendar startDate) {
+        this.taskStartDate = startDate;
+    }
+
+    @Override
+    public String toString(){
+        return this.taskName;
+    }
+
+    public String getDateString(){
+        return taskStartDate.getTime().toString();
+    }
+
+    public String getTaskDescription() {
+        return taskDescription;
+    }
+
+    public void setTaskDescription(String taskDescription) {
+        this.taskDescription = taskDescription;
     }
 }
