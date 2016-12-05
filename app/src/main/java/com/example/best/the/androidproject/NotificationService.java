@@ -47,14 +47,14 @@ public class NotificationService extends Service {
         Calendar today = Calendar.getInstance();
         today.setTime(new Date());
 
-        long diff = task.getStartDate().getTimeInMillis() - today.getTimeInMillis();
+        long diff = task.getTaskStartDate().getTimeInMillis() - today.getTimeInMillis();
 
         return diff > 0 && diff < HOUR_IN_MILIS;
     }
 
     private void sendNotify(TestTask task){
         mBuilder.setSmallIcon(R.drawable.noti_logo)
-                .setContentTitle("Wydarzenie o nazwie " + task.getName())
+                .setContentTitle("Wydarzenie o nazwie " + task.getTaskName())
                 .setContentText("W ciągu godziny odbędzie się zaplanowane wydarzenie!");
 
         Intent notificationIntent = new Intent(this, MainActivity.class);
