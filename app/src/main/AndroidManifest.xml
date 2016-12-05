@@ -17,6 +17,10 @@
         </activity>
         <activity android:name=".Settings" />
         <activity android:name=".CurrentDayActivity"></activity>
+        <service
+            android:name=".NotificationService"
+            android:enabled="true"
+            android:exported="true"/>
     </application>
 
 </manifest>
