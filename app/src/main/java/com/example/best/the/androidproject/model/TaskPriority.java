@@ -1,5 +1,6 @@
 package com.example.best.the.androidproject.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -10,6 +11,8 @@ public class TaskPriority {
     private long id;
     private String name;
     List<Task> tasks;
+
+    public TaskPriority(){this.tasks = new ArrayList<>();}
 
     public TaskPriority(long id, String name, List<Task> tasks) {
         this.id = id;

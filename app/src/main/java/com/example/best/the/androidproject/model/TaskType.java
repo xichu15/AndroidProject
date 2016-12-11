@@ -1,5 +1,6 @@
 package com.example.best.the.androidproject.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -10,6 +11,8 @@ public class TaskType {
     private long id;
     private String name;
     List<Task> tasks;
+
+    public TaskType(){ this.tasks = new ArrayList<>(); }
 
     public TaskType(List<Task> tasks, String name, long id) {
         this.tasks = tasks;

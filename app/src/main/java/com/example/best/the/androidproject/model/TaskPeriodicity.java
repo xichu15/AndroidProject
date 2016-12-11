@@ -1,5 +1,6 @@
 package com.example.best.the.androidproject.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -11,6 +12,8 @@ public class TaskPeriodicity {
     private long id;
     private String name;
     List<Task> tasks;
+
+    public TaskPeriodicity(){this.tasks = new ArrayList<>();}
 
     public TaskPeriodicity(long id, List<Task> tasks, String name) {
         this.id = id;

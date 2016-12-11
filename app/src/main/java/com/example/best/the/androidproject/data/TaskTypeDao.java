@@ -6,6 +6,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
 import android.provider.BaseColumns;
 
+import com.example.best.the.androidproject.model.TaskType;
+
 import java.util.ArrayList;
 import java.util.List;
 
