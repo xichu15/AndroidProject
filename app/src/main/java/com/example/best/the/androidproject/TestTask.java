@@ -11,6 +11,7 @@ public class TestTask {
     private String taskName;
     private Calendar taskStartDate;
     private String taskDescription;
+    private boolean notified = false;
 
     public TestTask(String name, Calendar taskStartDate, String taskDescription){
         this.taskName = name;
@@ -50,5 +51,13 @@ public class TestTask {
 
     public void setTaskDescription(String taskDescription) {
         this.taskDescription = taskDescription;
+    }
+
+    public boolean isNotified() {
+        return notified;
+    }
+
+    public void setNotified(boolean notified) {
+        this.notified = notified;
     }
 }

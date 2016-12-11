@@ -34,7 +34,7 @@ public class Settings extends Activity {
         btnSave.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 saveData();
-                showToast("Data saved");
+                showToast("Zapis");
             }
         });
     }

@@ -45,9 +45,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void createTaskList(){
-        addTaskToList("First", new Date("12/4/2016 18:30:00"), "Desc no 1");
-        addTaskToList("Second", new Date("12/5/2016 14:10:00"), "Desc no 2");
-        addTaskToList("Third", new Date("12/6/2016 12:00:00"), "Desc no 3");
+        addTaskToList("First", new Date("12/11/2016 16:11:00"), "Desc no 1");
+        addTaskToList("Second", new Date("12/11/2016 16:12:00"), "Desc no 2");
+        addTaskToList("Third", new Date("12/11/2016 16:13:30"), "Desc no 3");
     }
 
     private void addTaskToList(String name, Date date, String description){

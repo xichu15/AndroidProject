@@ -15,9 +15,11 @@ import java.util.Random;
 public class NotificationService extends Service {
 
     private static final int HOUR_IN_MILIS = 3600000;
+    private static final long MINUTE_IN_MILIS = 60000;
 
     NotificationCompat.Builder mBuilder;
     TaskList taskList;
+
 
     public NotificationService() {
     }
@@ -35,11 +37,24 @@ public class NotificationService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId){
-        for(TestTask task : taskList.getTaskList()){
-            if(isHourToGo(task)){
-                sendNotify(task);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true){
+                    try {
+                        for(TestTask task : taskList.getTaskList()){
+                            if(isHourToGo(task) && !task.isNotified()){
+                                sendNotify(task);
+                            }
+                        }
+                        Thread.sleep(MINUTE_IN_MILIS);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
-        }
+        }).start();
+
         return START_STICKY;
     }
 
@@ -53,6 +68,8 @@ public class NotificationService extends Service {
     }
 
     private void sendNotify(TestTask task){
+        task.setNotified(true);
+
         mBuilder.setSmallIcon(R.drawable.noti_logo)
                 .setContentTitle("Wydarzenie o nazwie " + task.getTaskName())
                 .setContentText("W ciągu godziny odbędzie się zaplanowane wydarzenie!");
