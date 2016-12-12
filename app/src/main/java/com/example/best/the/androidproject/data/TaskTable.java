@@ -37,7 +37,7 @@ public class TaskTable {
                 + BaseColumns._ID + "), ");
         sb.append(TaskColumns.NAME + " TEXT, ");
         sb.append(TaskColumns.DESCRIPTION + " TEXT, ");
-        sb.append(TaskColumns.DATE + " DATE ");
+        sb.append(TaskColumns.DATE + " INTEGER ");
         sb.append(");");
         db.execSQL(sb.toString());
     }

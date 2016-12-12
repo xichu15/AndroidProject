@@ -45,7 +45,7 @@ public class TaskDao implements Dao<Task> {
     public long save(Task entity) {
         insertStatement.clearBindings();
         insertStatement.bindString(1, entity.getName());
-        insertStatement.bindString(2, entity.getDate().toString());
+        insertStatement.bindLong(2, entity.getDate().getTimeInMillis());
         insertStatement.bindString(3, entity.getDescription());
         insertStatement.bindLong(4, entity.getTaskType().getId());
         insertStatement.bindLong(5, entity.getTaskPriority().getId());
@@ -57,7 +57,7 @@ public class TaskDao implements Dao<Task> {
     public void update(Task entity) {
         final ContentValues values = new ContentValues();
         values.put(TaskTable.TaskColumns.NAME, entity.getName());
-        values.put(TaskTable.TaskColumns.DATE, entity.getDate().toString());
+        values.put(TaskTable.TaskColumns.DATE, entity.getDate().getTimeInMillis());
         values.put(TaskTable.TaskColumns.DESCRIPTION, entity.getDescription());
         values.put(TaskTable.TaskColumns.ID_TYPE_FK, Long.toString(entity.getTaskType().getId()));
         values.put(TaskTable.TaskColumns.ID_PRIORITY_FK, Long.toString(entity.getTaskPriority().getId()));
@@ -194,7 +194,7 @@ public class TaskDao implements Dao<Task> {
             task.setId(c.getLong(0));
             task.setName(c.getString(1));
 
-            task.setDate(convertToDate(c.getString(2)));
+            task.setDateFromMilis(c.getLong(2));
             task.setDescription(c.getString(3));
 
             TaskTypeDao type = new TaskTypeDao(db);
@@ -206,18 +206,6 @@ public class TaskDao implements Dao<Task> {
             task.setTaskPeriodicity(periodicity.get(c.getLong(6)));
         }
         return task;
-    }
-
-    private Date convertToDate(String dateString){
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dow mon dd hh:mm:ss zzz yyyy");
-        //dow mon dd hh:mm:ss zzz yyyy
-        Date convertedDate = new Date();
-        try {
-            convertedDate = dateFormat.parse(dateString);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return convertedDate;
     }
 
     public Task find(String name){

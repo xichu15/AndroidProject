@@ -1,6 +1,7 @@
 package com.example.best.the.androidproject.model;
 
 import java.sql.Date;
+import java.util.Calendar;
 
 /**
  * Created by Michał on 2016-12-11.
@@ -10,14 +11,14 @@ public class Task {
     private long id;
     private String name;
     private String description;
-    private Date date;
+    private Calendar date;
     private TaskPeriodicity taskPeriodicity;
     private TaskType taskType;
     private TaskPriority taskPriority;
 
     public Task(){}
 
-    public Task(long id, String name, String description, TaskPeriodicity taskPeriodicity, Date date, TaskPriority taskPriority, TaskType taskType) {
+    public Task(long id, String name, String description, TaskPeriodicity taskPeriodicity, Calendar date, TaskPriority taskPriority, TaskType taskType) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -59,13 +60,15 @@ public class Task {
         this.taskPeriodicity = taskPeriodicity;
     }
 
-    public Date getDate() {
+    public Calendar getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(Calendar date) {
         this.date = date;
     }
+
+    public void setDateFromMilis(long timeInMilis) { this.date.setTimeInMillis(timeInMilis); }
 
     public String getDescription() {
         return description;
