@@ -43,36 +43,25 @@ public class DataManagerImpl implements DataManager {
 
     @Override
     public Task getTask(long taskId) {
-        Task task = taskDao.getTask();
+        Task task = taskDao.get(taskId);
         return task;
     }
 
     @Override
     public List<Task> getAllTasks() {
-        return null;
+        List<Task> tasks = taskDao.getAll();
+        return task;
     }
 
     @Override
     public Task findTask(String name) {
-        return null;
+        Task task = taskDao.find(name);
+        return task;
     }
 
     @Override
     public long saveTask(Task task) {
-        long taskId = 0L;
-
-        try {
-            db.beginTransaction();
-            taskId = taskDao.save(task);
-
-            db.setTransactionSuccessful();
-        } catch(SQLException e) {
-            Log.e("save task error", "Błąd przy zapisie zadania", e);
-            taskId = 0L;
-        } finally {
-            db.endTransaction();
-        }
-        return taskId;
+        return 0;
     }
 
     @Override
@@ -147,7 +136,6 @@ public class DataManagerImpl implements DataManager {
 
     @Override
     public TaskPriority getTaskPriority(long taskPriorityId) {
-        return null;
     }
 
     @Override
