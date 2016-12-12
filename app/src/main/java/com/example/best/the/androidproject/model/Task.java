@@ -15,6 +15,8 @@ public class Task {
     private TaskType taskType;
     private TaskPriority taskPriority;
 
+    public Task(){}
+
     public Task(long id, String name, String description, TaskPeriodicity taskPeriodicity, Date date, TaskPriority taskPriority, TaskType taskType) {
         this.id = id;
         this.name = name;

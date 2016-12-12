@@ -60,9 +60,7 @@ public class TaskPeriodicityDao implements Dao<TaskPeriodicity> {
                 BaseColumns._ID + " = ?", new String[] { String.valueOf(id) },
                 null, null, null, "1");
         if(c.moveToFirst()){
-            taskPeriodicity = new TaskPeriodicity();
-            taskPeriodicity.setId(c.getLong(0));
-            taskPeriodicity.setName(c.getString(1));
+            taskPeriodicity = buildTaskPeriodicityFromCursor(c);
         }
         if(!c.isClosed()){
             c.close();
@@ -79,9 +77,7 @@ public class TaskPeriodicityDao implements Dao<TaskPeriodicity> {
                 null, null, null, null, TaskPeriodicityTable.TaskPeriodicityColumns.NAME, null);
         if(c.moveToFirst()){
             do{
-                TaskPeriodicity taskPeriodicity = new TaskPeriodicity();
-                taskPeriodicity.setId(c.getLong(0));
-                taskPeriodicity.setName(c.getString(1));
+                TaskPeriodicity taskPeriodicity = buildTaskPeriodicityFromCursor(c);
                 list.add(taskPeriodicity);
             } while(c.moveToNext());
         }
@@ -89,6 +85,20 @@ public class TaskPeriodicityDao implements Dao<TaskPeriodicity> {
             c.close();
         }
         return list;
+    }
+
+    private TaskPeriodicity buildTaskPeriodicityFromCursor(Cursor c){
+        TaskPeriodicity taskPeriodicity = null;
+        if(c != null){
+            taskPeriodicity = new TaskPeriodicity();
+            taskPeriodicity.setId(c.getLong(0));
+            taskPeriodicity.setName(c.getString(1));
+
+            TaskDao td = new TaskDao(db);
+
+            taskPeriodicity.setTasks(td.getTasksByPeriodicity(taskPeriodicity.getId()));
+        }
+        return taskPeriodicity;
     }
 
     public TaskPeriodicity find(String name){

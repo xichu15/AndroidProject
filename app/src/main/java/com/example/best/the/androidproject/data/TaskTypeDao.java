@@ -60,9 +60,7 @@ public class TaskTypeDao implements Dao<TaskType> {
                 BaseColumns._ID + " = ?", new String[] { String.valueOf(id) },
                 null, null, null, "1");
         if(c.moveToFirst()){
-            taskType = new TaskType();
-            taskType.setId(c.getLong(0));
-            taskType.setName(c.getString(1));
+            taskType = buildTaskTypeFromCursor(c);
         }
         if(!c.isClosed()){
             c.close();
@@ -79,9 +77,7 @@ public class TaskTypeDao implements Dao<TaskType> {
                 null, null, null, null, TaskTypeTable.TaskTypeColumns.NAME, null);
         if(c.moveToFirst()){
             do{
-                TaskType taskType = new TaskType();
-                taskType.setId(c.getLong(0));
-                taskType.setName(c.getString(1));
+                TaskType taskType = this.buildTaskTypeFromCursor(c);
                 list.add(taskType);
             } while(c.moveToNext());
         }
@@ -89,6 +85,20 @@ public class TaskTypeDao implements Dao<TaskType> {
             c.close();
         }
         return list;
+    }
+
+    private TaskType buildTaskTypeFromCursor(Cursor c){
+        TaskType taskType = null;
+        if(c != null){
+            taskType = new TaskType();
+            taskType.setId(c.getLong(0));
+            taskType.setName(c.getString(1));
+
+            TaskDao td = new TaskDao(db);
+
+            taskType.setTasks(td.getTasksByType(taskType.getId()));
+        }
+        return taskType;
     }
 
     public TaskType find(String name){

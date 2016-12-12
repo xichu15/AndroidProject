@@ -60,9 +60,7 @@ public class TaskPriorityDao implements Dao<TaskPriority> {
                 BaseColumns._ID + " = ?", new String[] { String.valueOf(id) },
                 null, null, null, "1");
         if(c.moveToFirst()){
-            taskPriority = new TaskPriority();
-            taskPriority.setId(c.getLong(0));
-            taskPriority.setName(c.getString(1));
+            taskPriority = buildTaskPriorityFromCursor(c);
         }
         if(!c.isClosed()){
             c.close();
@@ -79,9 +77,7 @@ public class TaskPriorityDao implements Dao<TaskPriority> {
                 null, null, null, null, TaskPriorityTable.TaskPriorityColumns.NAME, null);
         if(c.moveToFirst()){
             do{
-                TaskPriority taskPriority = new TaskPriority();
-                taskPriority.setId(c.getLong(0));
-                taskPriority.setName(c.getString(1));
+                TaskPriority taskPriority = buildTaskPriorityFromCursor(c);
                 list.add(taskPriority);
             } while(c.moveToNext());
         }
@@ -89,6 +85,20 @@ public class TaskPriorityDao implements Dao<TaskPriority> {
             c.close();
         }
         return list;
+    }
+
+    private TaskPriority buildTaskPriorityFromCursor(Cursor c){
+        TaskPriority taskPriority = null;
+        if(c != null){
+            taskPriority = new TaskPriority();
+            taskPriority.setId(c.getLong(0));
+            taskPriority.setName(c.getString(1));
+
+            TaskDao td = new TaskDao(db);
+
+            taskPriority.setTasks(td.getTasksByPriority(taskPriority.getId()));
+        }
+        return taskPriority;
     }
 
     public TaskPriority find(String name){
