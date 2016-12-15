@@ -2,7 +2,7 @@
     <string name="app_name">AndroidProject</string>
            <!-- TODO: Remove or change this placeholder text -->
         <string name="ustawieniaMain">Settings</string>
-        <string name="dzisiejszeZadaniaMain">Today's tasks</string>
+        <string name="dzisiejszeZadaniaMain">Tasks for today</string>
         <string name="wyswietlaneZadaniaMain">This is the place where task from current date to... will be displayed</string>
 
     <string name="textViewCurrent">TextView</string>
