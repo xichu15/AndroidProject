@@ -21,6 +21,12 @@ public class TaskPeriodicity {
         this.name = name;
     }
 
+    public TaskPeriodicity(long id, String name) {
+        this.id = id;
+        this.name = name;
+        List<Task> tasks = new ArrayList<>();
+    }
+
     public long getId() {
         return id;
     }
