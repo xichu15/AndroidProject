@@ -1,11 +1,18 @@
 package com.example.best.the.androidproject;
 
 import android.app.Activity;
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.Toast;
 
 public class Settings extends Activity {
@@ -16,8 +23,25 @@ public class Settings extends Activity {
 
     private EditText etToSave;
     private Button btnSave;
+    private Switch serviceSwitch;
+    private CleaningService cService;
+    private boolean mBound = false;
 
     private SharedPreferences preferences;
+
+    private ServiceConnection mConnection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            CleaningService.LocalBinder binder = (CleaningService.LocalBinder) service;
+            cService = binder.getService();
+            mBound = true;
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            mBound = false;
+        }
+    };
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -26,6 +50,25 @@ public class Settings extends Activity {
         preferences = getSharedPreferences(PREFERENCES_NAME, Activity.MODE_PRIVATE);
         etToSave = (EditText) findViewById(R.id.EdtTxt);
         btnSave = (Button) findViewById(R.id.SaveBtn);
+        serviceSwitch = (Switch) findViewById(R.id.serviceSwitch);
+
+        serviceSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    if(!mBound){
+                        bindService(new Intent(getApplicationContext(), CleaningService.class), mConnection, Context.BIND_AUTO_CREATE);
+                        mBound = true;
+                    }
+                } else{
+                    if(mBound){
+                        unbindService(mConnection);
+                        mBound = false;
+                    }
+                }
+            }
+        });
+
         initButtonOnClick();
         restoreData();
     }
@@ -56,6 +99,12 @@ public class Settings extends Activity {
         int periodFromPreferences = preferences.getInt(PREFERENCES_INT_FIELD, 0);
         etToSave.setText(textFromPreferences);
         setPeriod(periodFromPreferences);
+    }
+
+    public void getCounter(View view){
+        if(mBound){
+            cService.getCounter();
+        }
     }
 
     public static int getPeriod() {

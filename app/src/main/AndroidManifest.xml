@@ -16,11 +16,28 @@
             </intent-filter>
         </activity>
         <activity android:name=".Settings" />
-        <activity android:name=".CurrentDayActivity"></activity>
+        <activity android:name=".CurrentDayActivity" />
+
         <service
             android:name=".NotificationService"
             android:enabled="true"
-            android:exported="true"/>
+            android:exported="true" />
+
+        <activity android:name=".AddTaskActivity" />
+
+        <service
+            android:name=".CleaningService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <receiver
+            android:name=".AlarmReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.TIME_SET"></action>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

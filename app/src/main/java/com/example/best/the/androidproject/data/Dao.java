@@ -12,5 +12,4 @@ public interface Dao<T> {
     void delete(T type);
     T get(long id);
     List<T> getAll();
-
 }

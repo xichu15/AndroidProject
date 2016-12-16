@@ -11,6 +11,7 @@ import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
+    Button addActivityButton;
     Button baton;
     Button buttonToCurrentDayAcitivies;
     TaskList taskList = new TaskList();
@@ -23,6 +24,18 @@ public class MainActivity extends AppCompatActivity {
         createTaskList();
 
         startService(new Intent(getApplicationContext(), NotificationService.class));
+
+        baton = (Button) findViewById(R.id.settingsBtn);
+        buttonToCurrentDayAcitivies = (Button) findViewById(R.id.buttonToCurrentDayActivites);
+        addActivityButton = (Button) findViewById(R.id.addActivityButton);
+
+        addActivityButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), AddTaskActivity.class);
+                startActivity(intent);
+            }
+        });
 
         baton = (Button) findViewById(R.id.settingsBtn);
         buttonToCurrentDayAcitivies = (Button) findViewById(R.id.buttonToCurrentDayActivites);
@@ -45,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void createTaskList(){
-        addTaskToList("First", new Date("12/11/2016 16:11:00"), "Desc no 1");
+        addTaskToList("First", new Date("12/12/2016 10:11:00"), "Desc no 1");
         addTaskToList("Second", new Date("12/11/2016 16:12:00"), "Desc no 2");
         addTaskToList("Third", new Date("12/11/2016 16:13:30"), "Desc no 3");
     }
