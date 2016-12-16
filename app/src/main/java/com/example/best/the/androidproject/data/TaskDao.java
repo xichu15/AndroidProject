@@ -24,7 +24,7 @@ import java.util.List;
 public class TaskDao implements Dao<Task> {
 
     private static final String INSERT =
-            "insert into " + TaskTable.TABLE_NAME + "("
+            "insert into " + TaskTable.TABLE_NAME + " ("
                     + TaskTable.TaskColumns.NAME + ", "
                     + TaskTable.TaskColumns.DATE + ", "
                     + TaskTable.TaskColumns.DESCRIPTION + ", "

@@ -79,10 +79,8 @@ public class NotificationService extends Service {
                 PendingIntent.FLAG_UPDATE_CURRENT);
         mBuilder.setContentIntent(contentIntent);
 
-        // Add as notification
         NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-        // Get unique ID for notification
         Random random = new Random();
         int notifyId = random.nextInt(9999 - 1000) + 1000;
         manager.notify(notifyId, mBuilder.build());

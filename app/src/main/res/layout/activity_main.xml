@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
@@ -8,27 +9,34 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.best.the.androidproject.MainActivity">
+    tools:context="com.example.best.the.androidproject.MainActivity"
+    android:orientation="vertical"
+    android:weightSum="1">
 
-    <TextView
-        android:layout_width="wrap_content"
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="186dp"
+        app:srcCompat="@drawable/org_logo"
+        android:id="@+id/imageView"
+        android:layout_weight="0.21" />
+
+    <Button
+        android:text="Dodaj nowe zadanie"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Tu będą wyświetlane zadania od current date do ..." />
+        android:id="@+id/addActivityButton" />
 
     <Button
         android:text="Ustawienia"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/buttonToCurrentDayActivites"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="158dp"
         android:id="@+id/settingsBtn" />
 
     <Button
         android:text="Zadania na dzień dzisiejszy"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
         android:id="@+id/buttonToCurrentDayActivites" />
-</RelativeLayout>
+
+</LinearLayout>
