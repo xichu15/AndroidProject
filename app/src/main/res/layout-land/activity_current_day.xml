@@ -9,29 +9,26 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.best.the.androidproject.CurrentDayActivity">
-
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="287dp"
-        android:background="@drawable/layout_border"
-        android:id="@+id/currentTaskDescription"
-        android:layout_alignTop="@+id/currentDayTasksListView"
-        android:layout_alignParentEnd="true">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
 
         <TextView
             android:text="@string/textViewCurrent"
-            android:layout_width="match_parent"
+            android:layout_width="280dp"
             android:layout_height="match_parent"
             android:id="@+id/tmpTextView" />
-    </FrameLayout>
+
 
     <ListView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="290dp"
         android:id="@+id/currentDayTasksListView"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
         android:layout_marginBottom="194dp" />
+    </LinearLayout>
 
 </RelativeLayout>

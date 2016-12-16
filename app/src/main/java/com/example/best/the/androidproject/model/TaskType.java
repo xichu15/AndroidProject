@@ -20,6 +20,12 @@ public class TaskType {
         this.id = id;
     }
 
+    public TaskType(long id, String name) {
+        this.id = id;
+        this.name = name;
+        List<Task> tasks = new ArrayList<>();
+    }
+
     public long getId() {
         return id;
     }

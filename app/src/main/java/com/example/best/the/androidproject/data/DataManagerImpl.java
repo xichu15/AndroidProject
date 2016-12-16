@@ -32,8 +32,8 @@ public class DataManagerImpl implements DataManager {
     public DataManagerImpl(Context context) {
         this.context = context;
 
-        //SQLiteOpenHelper openHelper = new ExampleOpenHelper(this.context);
-        // db = openHelper.getWritableDatabase();
+        SQLiteOpenHelper openHelper = new OpenHelper(this.context);
+        db = openHelper.getWritableDatabase();
 
         taskDao = new TaskDao(db);
         taskPeriodicityDao = new TaskPeriodicityDao(db);

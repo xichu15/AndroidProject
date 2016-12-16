@@ -20,6 +20,12 @@ public class TaskPriority {
         this.tasks = tasks;
     }
 
+    public TaskPriority(long id, String name) {
+        this.id = id;
+        this.name = name;
+        List<Task> tasks = new ArrayList<>();
+    }
+
     public long getId() {
         return id;
     }

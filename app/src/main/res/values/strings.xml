@@ -1,3 +1,26 @@
 <resources>
     <string name="app_name">AndroidProject</string>
-</resources>
+           <!-- TODO: Remove or change this placeholder text -->
+        <string name="ustawieniaMain">Settings</string>
+        <string name="dzisiejszeZadaniaMain">Tasks for today</string>
+        <string name="wyswietlaneZadaniaMain">This is the place where task from current date to... will be displayed</string>
+
+    <string name="textViewCurrent">TextView</string>
+
+    <string name="pytanieUstawienia">Period of time for which tatsk should be displayed(in days): </string>
+    <string name="zapiszUstawienia">Save</string>
+
+    <string-array name="taskPeriodicity">
+        <item>EveryDay</item>
+        <item>EveryWeek</item>
+        <item>EveryMonth</item>
+    </string-array>
+    <string-array name="taskType">
+        <item>Meeting</item>
+        <item>Other</item>
+    </string-array>
+    <string-array name="taskPriority">
+        <item>important</item>
+        <item>notImportant</item>
+    </string-array>
+    </resources>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AndroidProject</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="ustawieniaMain">Ustawienia</string>
+    <string name="dzisiejszeZadaniaMain">Zadania na dzisiejszy dzień</string>
+    <string name="wyswietlaneZadaniaMain">Tu będą wyświetlane zadania od current date do ...</string>
+
+
+    <string name="textViewCurrent">Widok Tekstu</string>
+
+    <string name="pytanieUstawienia">Na jaki okres czasu mamy wyświetlać zadania po wejściu w aplikację(w dniach)?</string>
+    <string name="zapiszUstawienia">Zapisz</string>
+
+</resources>
