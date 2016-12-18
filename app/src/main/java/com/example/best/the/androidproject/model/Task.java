@@ -11,7 +11,7 @@ public class Task {
     private long id;
     private String name;
     private String description;
-    private Calendar date;
+    private Calendar date = Calendar.getInstance();
     private TaskPeriodicity taskPeriodicity;
     private TaskType taskType;
     private TaskPriority taskPriority;
@@ -83,7 +83,7 @@ public class Task {
         this.date = date;
     }
 
-    public void setDateFromMilis(long timeInMilis) { this.date.setTimeInMillis(timeInMilis); }
+    public void setDateFromMilis(long time) { this.date.setTimeInMillis(time);  }
 
     public String getDescription() {
         return description;

@@ -75,9 +75,9 @@ public class AddTaskActivity extends AppCompatActivity {
         periodicityList.clear();
         periodicityList.addAll(dataManager.getAllTaskPeriodicty());
 
-        ArrayAdapter adapterType = new ArrayAdapter(this, R.layout.spinner_item, typeList);
-        ArrayAdapter adapterPriority = new ArrayAdapter(this, R.layout.spinner_item, priorityList);
-        ArrayAdapter adapterPeriodicity = new ArrayAdapter(this, R.layout.spinner_item, periodicityList);
+        ArrayAdapter adapterType = new ArrayAdapter<>(this, R.layout.spinner_item, typeList);
+        ArrayAdapter adapterPriority = new ArrayAdapter<>(this, R.layout.spinner_item, priorityList);
+        ArrayAdapter adapterPeriodicity = new ArrayAdapter<>(this, R.layout.spinner_item, periodicityList);
 
         taskType.setAdapter(adapterType);
         taskPriority.setAdapter(adapterPriority);
@@ -95,6 +95,10 @@ public class AddTaskActivity extends AppCompatActivity {
             taskTimeInMilis += Long.parseLong(taskMinute.getText().toString()) * 60000;
             taskTimeInMilis += Long.parseLong(taskHour.getText().toString()) * 3600000;
             newTask.setDateFromMilis(taskTimeInMilis);
+
+            newTask.setTaskType((TaskType) taskType.getSelectedItem());
+            newTask.setTaskPriority((TaskPriority) taskPriority.getSelectedItem());
+            newTask.setTaskPeriodicity((TaskPeriodicity) taskPeriodicity.getSelectedItem());
 
             dataManager.saveTask(newTask);
             Toast.makeText(getApplicationContext(), "Task has been added", Toast.LENGTH_SHORT).show();

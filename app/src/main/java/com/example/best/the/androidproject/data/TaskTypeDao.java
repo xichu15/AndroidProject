@@ -96,7 +96,7 @@ public class TaskTypeDao implements Dao<TaskType> {
 
             TaskDao td = new TaskDao(db);
 
-            taskType.setTasks(td.getTasksByType(taskType.getId()));
+            taskType.getTasks().addAll(td.getTasksByType(taskType.getId()));
         }
         return taskType;
     }

@@ -70,4 +70,9 @@ public class TaskType {
         result = 31 * result + (tasks != null ? tasks.hashCode() : 0);
         return result;
     }
+
+    @Override
+    public String toString(){
+        return this.name;
+    }
 }
