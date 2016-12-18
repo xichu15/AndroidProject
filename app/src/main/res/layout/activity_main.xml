@@ -22,10 +22,9 @@
         android:layout_weight="0.21" />
 
     <Button
-        android:text="Dodaj nowe zadanie"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/wyswietlaneZadaniaMain" />
+        android:text="@string/wyswietlaneZadaniaMain"
         android:id="@+id/addActivityButton" />
 
     <Button
