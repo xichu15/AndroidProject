@@ -12,4 +12,18 @@
     <string name="pytanieUstawienia">Na jaki okres czasu mamy wyświetlać zadania po wejściu w aplikację(w dniach)?</string>
     <string name="zapiszUstawienia">Zapisz</string>
 
+    <string-array name="taskPeriodicity">
+        <item>Codziennie</item>
+        <item>Co_tydzien</item>
+        <item>Co_miesiac</item>
+    </string-array>
+    <string-array name="taskType">
+        <item>Spotkanie</item>
+        <item>Inne</item>
+    </string-array>
+    <string-array name="taskPriority">
+        <item>Wazne</item>
+        <item>Niewazne</item>
+    </string-array>
+
 </resources>
