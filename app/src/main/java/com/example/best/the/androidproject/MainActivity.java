@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
     Button addActivityButton;
     Button baton;
     Button buttonToCurrentDayAcitivies;
+    Button buttonToRangeActivity;
     TaskList taskList = new TaskList();
 
     @Override
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         baton = (Button) findViewById(R.id.settingsBtn);
         buttonToCurrentDayAcitivies = (Button) findViewById(R.id.buttonToCurrentDayActivites);
         addActivityButton = (Button) findViewById(R.id.addActivityButton);
+        buttonToRangeActivity = (Button) findViewById(R.id.rangeActivityButton);
 
         addActivityButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,6 +54,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), CurrentDayActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        buttonToRangeActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent (getApplicationContext(),RangeTasksActivity.class);
                 startActivity(intent);
             }
         });

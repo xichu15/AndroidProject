@@ -35,9 +35,11 @@
             android:enabled="true"
             android:exported="true">
             <intent-filter>
-                <action android:name="android.intent.action.TIME_SET"></action>
+                <action android:name="android.intent.action.TIME_SET" />
             </intent-filter>
         </receiver>
+
+        <activity android:name=".RangeTasksActivity"></activity>
     </application>
 
 </manifest>

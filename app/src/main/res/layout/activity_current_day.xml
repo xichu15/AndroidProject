@@ -19,11 +19,6 @@
         android:layout_alignTop="@+id/currentDayTasksListView"
         android:layout_alignParentEnd="true">
 
-        <TextView
-            android:text="@string/textViewCurrent"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/tmpTextView" />
     </FrameLayout>
 
     <ListView

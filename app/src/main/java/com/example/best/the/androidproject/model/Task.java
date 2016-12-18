@@ -18,6 +18,11 @@ public class Task {
 
     public Task(){}
 
+    @Override
+    public String toString() {
+        return this.getName();
+    }
+
     public Task(long id, String name, String description, TaskPeriodicity taskPeriodicity, Calendar date, TaskPriority taskPriority, TaskType taskType) {
         this.id = id;
         this.name = name;
@@ -26,6 +31,16 @@ public class Task {
         this.date = date;
         this.taskPriority = taskPriority;
         this.taskType = taskType;
+    }
+
+    public Task(long id, String name, String description, Calendar date) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.date = date;
+        this.taskPeriodicity = null;
+        this.taskPriority = null;
+        this.taskType = null;
     }
 
     public long getId() {

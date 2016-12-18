@@ -1,13 +1,13 @@
 <resources>
     <string name="app_name">AndroidProject</string>
-           <!-- TODO: Remove or change this placeholder text -->
-        <string name="ustawieniaMain">Settings</string>
-        <string name="dzisiejszeZadaniaMain">Tasks for today</string>
-        <string name="wyswietlaneZadaniaMain">This is the place where task from current date to... will be displayed</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="ustawieniaMain">Settings</string>
+    <string name="dzisiejszeZadaniaMain">Tasks for today</string>
+    <string name="wyswietlaneZadaniaMain">Add new Task</string>
 
     <string name="textViewCurrent">TextView</string>
 
-    <string name="pytanieUstawienia">Period of time for which tatsk should be displayed(in days): </string>
+    <string name="pytanieUstawienia">Period of time for which task should be displayed(in days): </string>
     <string name="zapiszUstawienia">Save</string>
 
     <string-array name="taskPeriodicity">
@@ -23,4 +23,7 @@
         <item>important</item>
         <item>notImportant</item>
     </string-array>
-    </resources>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

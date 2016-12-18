@@ -33,6 +33,23 @@ public class TaskList{
         return currentTasks;
     }
 
+    public List<TestTask> getTasksFromRange(Calendar startDate, Calendar endDate) {
+        List<TestTask> rangeTasks = new ArrayList<>();
+        for (TestTask task : taskList) {
+            if (isTaskFromRange(startDate, endDate, task)) {
+                rangeTasks.add(task);
+            }
+        }
+        return rangeTasks;
+    }
+
+    private boolean isTaskFromRange(Calendar startDate, Calendar endDate, TestTask task) {
+        if( startDate.before(task.getTaskStartDate())&& endDate.after(task.getTaskStartDate()))
+            return true;
+        return false;
+    }
+
+
     private boolean isCurrentTask(TestTask task){
         Calendar today = Calendar.getInstance(); today.setTime(new Date());
         if(today.get(Calendar.YEAR) == task.getTaskStartDate().get(Calendar.YEAR)
@@ -42,6 +59,7 @@ public class TaskList{
         } else{
             return false;
         }
-
     }
+
+
 }

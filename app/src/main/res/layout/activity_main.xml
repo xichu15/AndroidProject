@@ -17,7 +17,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="186dp"
-        app:srcCompat="@drawable/org_logo"
+        app:srcCompat="@drawable/logo"
         android:id="@+id/imageView"
         android:layout_weight="0.21" />
 
@@ -38,5 +38,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/buttonToCurrentDayActivites" />
+
+    <Button
+        android:text="Tasks from period of time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/rangeActivityButton" />
 
 </LinearLayout>
