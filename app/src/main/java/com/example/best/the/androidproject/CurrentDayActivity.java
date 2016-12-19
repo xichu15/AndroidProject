@@ -11,6 +11,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.best.the.androidproject.data.DataManager;
+import com.example.best.the.androidproject.data.DataManagerImpl;
 import com.example.best.the.androidproject.model.Task;
 
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ import java.util.List;
 
 public class CurrentDayActivity extends AppCompatActivity implements TaskDescription.OnFragmentInteractionListener {
 
+    private static final long DAY_IN_MILIS = 5184000000L;
     ListView listView;
     List<Task> taskList;
     private DataManager dataManager;
@@ -36,15 +38,8 @@ public class CurrentDayActivity extends AppCompatActivity implements TaskDescrip
         ft1.addToBackStack(null);
         ft1.commit();
 
-        Task taskOne = new Task(1,"first task","description of first task",Calendar.getInstance());
-        Task taskTwo = new Task(2,"Second task","description of second task",Calendar.getInstance());
-        Task taskThree = new Task(3,"Third task","description of third task",Calendar.getInstance());
-
         taskList = new ArrayList<>();
-
-        taskList.add(taskOne);
-        taskList.add(taskTwo);
-        taskList.add(taskThree);
+        taskList = getCurrentTasks();
 
         ArrayAdapter<Task> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
                 taskList);
@@ -56,8 +51,9 @@ public class CurrentDayActivity extends AppCompatActivity implements TaskDescrip
                 TextView txt = (TextView) findViewById(R.id.taskDescriptionInFragment);
                 txt.setText(clickedTask.getDate().get(Calendar.DAY_OF_MONTH) +
                         "/" + clickedTask.getDate().get(Calendar.MONTH) + "/" +
-                                clickedTask.getDate().get(Calendar.YEAR) +
+                                clickedTask.getDate().get(Calendar.YEAR) + " " + clickedTask.getDate().get(Calendar.HOUR) + ":" + clickedTask.getDate().get(Calendar.MINUTE) +
                         "\n" + clickedTask.getDescription());
+                System.out.println(new Date());
             }
         });
 
@@ -66,5 +62,22 @@ public class CurrentDayActivity extends AppCompatActivity implements TaskDescrip
     @Override
     public void onFragmentInteraction(Uri uri) {
 
+    }
+
+    private ArrayList<Task> getCurrentTasks(){
+        dataManager = new DataManagerImpl(this);
+        ArrayList<Task> allTasks = new ArrayList<>();
+        allTasks.addAll(dataManager.getAllTasks());
+        ArrayList currentTasks = new ArrayList<>();
+
+        Calendar today = Calendar.getInstance(); today.setTime(new Date());
+        for(Task task : allTasks){
+            long diffInMilis = task.getDate().getTimeInMillis() - today.getTimeInMillis();
+            if(diffInMilis < DAY_IN_MILIS && diffInMilis > 0){
+                currentTasks.add(task);
+            }
+        }
+
+        return currentTasks;
     }
 }

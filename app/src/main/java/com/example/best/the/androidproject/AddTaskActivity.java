@@ -96,9 +96,15 @@ public class AddTaskActivity extends AppCompatActivity {
             taskTimeInMilis += Long.parseLong(taskHour.getText().toString()) * 3600000;
             newTask.setDateFromMilis(taskTimeInMilis);
 
-            newTask.setTaskType((TaskType) taskType.getSelectedItem());
-            newTask.setTaskPriority((TaskPriority) taskPriority.getSelectedItem());
-            newTask.setTaskPeriodicity((TaskPeriodicity) taskPeriodicity.getSelectedItem());
+            System.out.println("Czas dodawanego zadania: " + newTask.getDate().getTime());
+
+            TaskType selectedType = (TaskType) taskType.getSelectedItem();
+            TaskPriority selectedPriority = (TaskPriority) taskPriority.getSelectedItem();
+            TaskPeriodicity selectedPeriodicity = (TaskPeriodicity) taskPeriodicity.getSelectedItem();
+
+            newTask.setTaskType(selectedType.getId());
+            newTask.setTaskPriority(selectedPriority.getId());
+            newTask.setTaskPeriodicity(selectedPeriodicity.getId());
 
             dataManager.saveTask(newTask);
             Toast.makeText(getApplicationContext(), "Task has been added", Toast.LENGTH_SHORT).show();

@@ -47,9 +47,9 @@ public class TaskDao implements Dao<Task> {
         insertStatement.bindString(1, entity.getName());
         insertStatement.bindLong(2, entity.getDate().getTimeInMillis());
         insertStatement.bindString(3, entity.getDescription());
-        insertStatement.bindLong(4, entity.getTaskType().getId());
-        insertStatement.bindLong(5, entity.getTaskPriority().getId());
-        insertStatement.bindLong(6,entity.getTaskPeriodicity().getId());
+        insertStatement.bindLong(4, entity.getTaskType());
+        insertStatement.bindLong(5, entity.getTaskPriority());
+        insertStatement.bindLong(6,entity.getTaskPeriodicity());
         return insertStatement.executeInsert();
     }
 
@@ -59,9 +59,9 @@ public class TaskDao implements Dao<Task> {
         values.put(TaskTable.TaskColumns.NAME, entity.getName());
         values.put(TaskTable.TaskColumns.DATE, entity.getDate().getTimeInMillis());
         values.put(TaskTable.TaskColumns.DESCRIPTION, entity.getDescription());
-        values.put(TaskTable.TaskColumns.ID_TYPE_FK, Long.toString(entity.getTaskType().getId()));
-        values.put(TaskTable.TaskColumns.ID_PRIORITY_FK, Long.toString(entity.getTaskPriority().getId()));
-        values.put(TaskTable.TaskColumns.ID_PERIODICITY_FK, Long.toString(entity.getTaskPeriodicity().getId()));
+        values.put(TaskTable.TaskColumns.ID_TYPE_FK, Long.toString(entity.getTaskType()));
+        values.put(TaskTable.TaskColumns.ID_PRIORITY_FK, Long.toString(entity.getTaskPriority()));
+        values.put(TaskTable.TaskColumns.ID_PERIODICITY_FK, Long.toString(entity.getTaskPeriodicity()));
         db.update(TaskTable.TABLE_NAME, values, BaseColumns._ID + " = ?", new String[] { String.valueOf(entity.getId()) });
     }
 
@@ -128,7 +128,7 @@ public class TaskDao implements Dao<Task> {
         if(c.moveToFirst()){
             do{
                 Task task = this.buildTaskFromCursor(c);
-                if(task.getTaskType().getId() == id){
+                if(task.getTaskType() == id){
                     list.add(task);
                 }
             } while(c.moveToNext());
@@ -151,7 +151,7 @@ public class TaskDao implements Dao<Task> {
         if(c.moveToFirst()){
             do{
                 Task task = this.buildTaskFromCursor(c);
-                if(task.getTaskPriority().getId() == id){
+                if(task.getTaskPriority() == id){
                     list.add(task);
                 }
             } while(c.moveToNext());
@@ -175,7 +175,7 @@ public class TaskDao implements Dao<Task> {
         if(c.moveToFirst()){
             do{
                 Task task = this.buildTaskFromCursor(c);
-                if(task.getTaskPeriodicity().getId() == id){
+                if(task.getTaskPeriodicity() == id){
                     list.add(task);
                 }
             } while(c.moveToNext());
@@ -201,9 +201,9 @@ public class TaskDao implements Dao<Task> {
             TaskPriorityDao priority = new TaskPriorityDao(db);
             TaskPeriodicityDao periodicity = new TaskPeriodicityDao(db);
 
-            task.setTaskType(type.get(c.getLong(4)));
-            task.setTaskPriority(priority.get(c.getLong(5)));
-            task.setTaskPeriodicity(periodicity.get(c.getLong(6)));
+            task.setTaskType(c.getLong(4));
+            task.setTaskPriority(c.getLong(5));
+            task.setTaskPeriodicity(c.getLong(6));
         }
         return task;
     }

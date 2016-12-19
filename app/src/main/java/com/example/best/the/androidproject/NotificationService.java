@@ -8,6 +8,11 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
 
+import com.example.best.the.androidproject.data.DataManager;
+import com.example.best.the.androidproject.data.DataManagerImpl;
+import com.example.best.the.androidproject.model.Task;
+
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
@@ -18,7 +23,8 @@ public class NotificationService extends Service {
     private static final long MINUTE_IN_MILIS = 60000;
 
     NotificationCompat.Builder mBuilder;
-    TaskList taskList;
+    ArrayList<Task> taskList;
+    DataManager dataManager;
 
 
     public NotificationService() {
@@ -27,7 +33,9 @@ public class NotificationService extends Service {
     @Override
     public void onCreate(){
         mBuilder = new NotificationCompat.Builder(this);
-        taskList = new TaskList();
+        dataManager = new DataManagerImpl(this);
+        taskList = new ArrayList<>();
+        taskList.addAll(dataManager.getAllTasks());
     }
 
     @Override
@@ -42,7 +50,7 @@ public class NotificationService extends Service {
             public void run() {
                 while (true){
                     try {
-                        for(TestTask task : taskList.getTaskList()){
+                        for(Task task : taskList){
                             if(isHourToGo(task) && !task.isNotified()){
                                 sendNotify(task);
                             }
@@ -58,20 +66,20 @@ public class NotificationService extends Service {
         return START_STICKY;
     }
 
-    private boolean isHourToGo(TestTask task){
+    private boolean isHourToGo(Task task){
         Calendar today = Calendar.getInstance();
         today.setTime(new Date());
 
-        long diff = task.getTaskStartDate().getTimeInMillis() - today.getTimeInMillis();
+        long diff = task.getDate().getTimeInMillis() - today.getTimeInMillis();
 
         return diff > 0 && diff < HOUR_IN_MILIS;
     }
 
-    private void sendNotify(TestTask task){
+    private void sendNotify(Task task){
         task.setNotified(true);
 
         mBuilder.setSmallIcon(R.drawable.noti_logo)
-                .setContentTitle("Wydarzenie o nazwie " + task.getTaskName())
+                .setContentTitle("Wydarzenie o nazwie " + task.getName())
                 .setContentText("W ciągu godziny odbędzie się zaplanowane wydarzenie!");
 
         Intent notificationIntent = new Intent(this, MainActivity.class);

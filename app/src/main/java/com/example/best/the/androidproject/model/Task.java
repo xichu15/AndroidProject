@@ -12,9 +12,10 @@ public class Task {
     private String name;
     private String description;
     private Calendar date = Calendar.getInstance();
-    private TaskPeriodicity taskPeriodicity;
-    private TaskType taskType;
-    private TaskPriority taskPriority;
+    private long taskPeriodicity;
+    private long taskType;
+    private long taskPriority;
+    private boolean notified = false;
 
     public Task(){}
 
@@ -23,7 +24,7 @@ public class Task {
         return this.getName();
     }
 
-    public Task(long id, String name, String description, TaskPeriodicity taskPeriodicity, Calendar date, TaskPriority taskPriority, TaskType taskType) {
+    public Task(long id, String name, String description, long taskPeriodicity, Calendar date, long taskPriority, long taskType) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -38,9 +39,9 @@ public class Task {
         this.name = name;
         this.description = description;
         this.date = date;
-        this.taskPeriodicity = null;
-        this.taskPriority = null;
-        this.taskType = null;
+        this.taskPeriodicity = 0;
+        this.taskPriority = 0;
+        this.taskType = 0;
     }
 
     public long getId() {
@@ -51,27 +52,27 @@ public class Task {
         this.id = id;
     }
 
-    public TaskPriority getTaskPriority() {
+    public long getTaskPriority() {
         return taskPriority;
     }
 
-    public void setTaskPriority(TaskPriority taskPriority) {
+    public void setTaskPriority(long taskPriority) {
         this.taskPriority = taskPriority;
     }
 
-    public TaskType getTaskType() {
+    public long getTaskType() {
         return taskType;
     }
 
-    public void setTaskType(TaskType taskType) {
+    public void setTaskType(long taskType) {
         this.taskType = taskType;
     }
 
-    public TaskPeriodicity getTaskPeriodicity() {
+    public long getTaskPeriodicity() {
         return taskPeriodicity;
     }
 
-    public void setTaskPeriodicity(TaskPeriodicity taskPeriodicity) {
+    public void setTaskPeriodicity(long taskPeriodicity) {
         this.taskPeriodicity = taskPeriodicity;
     }
 
@@ -113,23 +114,19 @@ public class Task {
         if (description != null ? !description.equals(task.description) : task.description != null)
             return false;
         if (date != null ? !date.equals(task.date) : task.date != null) return false;
-        if (taskPeriodicity != null ? !taskPeriodicity.equals(task.taskPeriodicity) : task.taskPeriodicity != null)
+        if (taskPeriodicity != 0 ? taskPeriodicity != task.taskPeriodicity : task.taskPeriodicity != 0)
             return false;
-        if (taskType != null ? !taskType.equals(task.taskType) : task.taskType != null)
+        if (taskType != 0 ? taskType != task.taskType : task.taskType != 0)
             return false;
-        return taskPriority != null ? taskPriority.equals(task.taskPriority) : task.taskPriority == null;
+        return taskPriority != 0 ? taskPriority == task.taskPriority : task.taskPriority == 0;
 
     }
 
-    @Override
-    public int hashCode() {
-        int result = (int) (id ^ (id >>> 32));
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (description != null ? description.hashCode() : 0);
-        result = 31 * result + (date != null ? date.hashCode() : 0);
-        result = 31 * result + (taskPeriodicity != null ? taskPeriodicity.hashCode() : 0);
-        result = 31 * result + (taskType != null ? taskType.hashCode() : 0);
-        result = 31 * result + (taskPriority != null ? taskPriority.hashCode() : 0);
-        return result;
+    public boolean isNotified() {
+        return notified;
+    }
+
+    public void setNotified(boolean notified) {
+        this.notified = notified;
     }
 }
