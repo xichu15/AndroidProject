@@ -36,10 +36,6 @@ public class RangeTasksActivity extends AppCompatActivity implements TaskDescrip
     DataManagerImpl dataManager;
     List<Task> taskList;
     TaskAdapter adapter;
-    Task taskOne = new Task(1,"first task","description of first task",Calendar.getInstance());
-    Task taskTwo = new Task(2,"Second task","description of second task",Calendar.getInstance());
-    Task taskThree = new Task(3,"Third task","description of third task",Calendar.getInstance());
-
     int yearS, monthS, dayS, yearE, monthE, dayE;
 
     static final int STARTDATEDIALOGID = 0;
@@ -67,13 +63,9 @@ public class RangeTasksActivity extends AppCompatActivity implements TaskDescrip
 
         showDateDialogOnButtonsClick();
 
-       // dataManager = new DataManagerImpl(this);
+        dataManager = new DataManagerImpl(this);
         taskList = new ArrayList<>();
-        taskList.clear();
-        taskList.add(taskOne);
-        taskList.add(taskTwo);
-        taskList.add(taskThree);
-        //taskList.addAll(dataManager.getAllTasks());
+        taskList.addAll(dataManager.getAllTasks());
         adapter = new TaskAdapter(this, R.layout.task_item, taskList);
         ListView listView = (ListView) findViewById(R.id.rangeTasksListView);
         listView.setAdapter(adapter);
@@ -127,11 +119,8 @@ public class RangeTasksActivity extends AppCompatActivity implements TaskDescrip
         Calendar endDate= Calendar.getInstance();
         endDate.set(yearE, monthE - 1,dayE);
 
-        //taskList.addAll(dataManager.getAllTasks());
         taskList.clear();
-        taskList.add(taskOne);
-        taskList.add(taskTwo);
-        taskList.add(taskThree);
+        taskList.addAll(dataManager.getAllTasks());
         List<Task> tmpList = getTasksFromRange(startDate,endDate, taskList);
         taskList = tmpList;
         adapter.updateTaskList(taskList);
@@ -190,7 +179,7 @@ public class RangeTasksActivity extends AppCompatActivity implements TaskDescrip
                  holder.buttonDelete.setOnClickListener(new View.OnClickListener() {
                      @Override
                      public void onClick(View view) {
-                         dataManager.deleteTask(dataManager.getTask(task.getId()));
+                         dataManager.deleteTask(task);
                          finish();
                          startActivity(getIntent());
                      }

@@ -29,7 +29,7 @@ public class CleaningService extends Service {
     private Handler counterHandler = new Handler();
     private Handler timerhandler = new Handler();
     private Timer mTimer = null;
-    private Integer removedTasks = 0;
+    private static Integer removedTasks = 0;
 
     public class LocalBinder extends Binder {
         CleaningService getService(){
@@ -49,7 +49,7 @@ public class CleaningService extends Service {
         taskList = new ArrayList<>();
         taskList.addAll(dataManager.getAllTasks());
 
-        Toast.makeText(getApplicationContext(), "Bound service has been started",
+        Toast.makeText(getApplicationContext(), "Cleaning service has been started",
                 Toast.LENGTH_SHORT).show();
 
         mTimer.scheduleAtFixedRate(new TimeDisplayTimerTask(), 0, NOTIFY_INTERVAL);
@@ -58,7 +58,7 @@ public class CleaningService extends Service {
 
     @Override
     public boolean onUnbind(Intent intent){
-        Toast.makeText(getApplicationContext(), "Bound service has been stopped", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "Cleaning service has been stopped", Toast.LENGTH_SHORT).show();
         mTimer.cancel();
         return true;
     }
@@ -85,13 +85,17 @@ public class CleaningService extends Service {
                 @Override
                 public void run() {
                     Date currentDate = new Date();
+                    taskList.clear();
+                    taskList.addAll(dataManager.getAllTasks());
                     for(Task task : taskList){
                         if(currentDate.after(task.getDate().getTime())){
+                            Toast.makeText(getApplicationContext(), "Task " + task.getName() + " has beed removed",
+                                    Toast.LENGTH_SHORT).show();
                             dataManager.deleteTask(task);
                             removedTasks++;
                         }
                     }
-                    Toast.makeText(getApplicationContext(), "Bound service is still working",
+                    Toast.makeText(getApplicationContext(), "Cleaning service is still working",
                             Toast.LENGTH_SHORT).show();
                 }
 

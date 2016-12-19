@@ -68,6 +68,7 @@ public class TaskDao implements Dao<Task> {
     @Override
     public void delete(Task entity) {
         if (entity.getId() > 0) {
+            System.out.println("Usuwamy zadanie: " + entity.getName());
             db.delete(TaskTypeTable.TABLE_NAME, BaseColumns._ID + " = ?", new String[]{String.valueOf(entity.getId())});
         }
     }

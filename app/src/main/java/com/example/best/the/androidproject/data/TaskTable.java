@@ -31,13 +31,13 @@ public class TaskTable {
         sb.append(TaskColumns.ID_PERIODICITY_FK + " INTEGER NOT NULL, ");
         sb.append("FOREIGN KEY(" + TaskColumns.ID_TYPE_FK + ") "
                 + "REFERENCES " + TaskTypeTable.TABLE_NAME + "("
-                + BaseColumns._ID + "), ");
+                + BaseColumns._ID + ") ON DELETE CASCADE, ");
         sb.append("FOREIGN KEY(" + TaskColumns.ID_PRIORITY_FK + ") "
                 + "REFERENCES " + TaskPriorityTable.TABLE_NAME + "("
-                + BaseColumns._ID + "), ");
+                + BaseColumns._ID + ") ON DELETE CASCADE, ");
         sb.append("FOREIGN KEY(" + TaskColumns.ID_PERIODICITY_FK + ") "
                 + "REFERENCES " + TaskPeriodicityTable.TABLE_NAME + "("
-                + BaseColumns._ID + ") ");
+                + BaseColumns._ID + ") ON DELETE CASCADE");
         sb.append(");");
         db.execSQL(sb.toString());
     }

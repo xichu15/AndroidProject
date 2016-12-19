@@ -107,6 +107,15 @@ public class Settings extends Activity {
         }
     }
 
+    @Override
+    protected void onStop(){
+        super.onStop();
+        if (mBound){
+            unbindService(mConnection);
+            mBound = false;
+        }
+    }
+
     public static int getPeriod() {
         return period;
     }

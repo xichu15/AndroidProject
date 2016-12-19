@@ -15,7 +15,6 @@ public class Task {
     private long taskPeriodicity;
     private long taskType;
     private long taskPriority;
-    private boolean notified = false;
 
     public Task(){}
 
@@ -120,13 +119,5 @@ public class Task {
             return false;
         return taskPriority != 0 ? taskPriority == task.taskPriority : task.taskPriority == 0;
 
-    }
-
-    public boolean isNotified() {
-        return notified;
-    }
-
-    public void setNotified(boolean notified) {
-        this.notified = notified;
     }
 }

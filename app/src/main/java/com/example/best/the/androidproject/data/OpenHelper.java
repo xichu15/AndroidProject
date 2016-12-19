@@ -28,8 +28,15 @@ public class OpenHelper extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onOpen(final SQLiteDatabase db) {
+    public void onOpen(SQLiteDatabase db) {
         super.onOpen(db);
+        db.execSQL("PRAGMA foreign_keys = ON;");
+    }
+
+    @Override
+    public void onConfigure(SQLiteDatabase db){
+        super.onConfigure(db);
+        db.setForeignKeyConstraintsEnabled(true);
     }
 
     @Override
